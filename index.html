@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Продать недвижимость</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input, select, button { display: block; margin-bottom: 10px; width: 100%; padding: 8px; }
+  </style>
+</head>
+<body>
+  <h2>Добавить объявление</h2>
+  <form id="realtyForm">
+    <select id="region"><option>Сеул</option><option>Пусан</option></select>
+    <select id="city"><option>Гангнам</option><option>Хондэ</option></select>
+    <select id="type">
+      <option value="Квартира">Квартира</option>
+      <option value="Дом">Дом</option>
+      <option value="Участок">Участок</option>
+    </select>
+    <input type="number" id="rooms" placeholder="Комнат (если квартира)">
+    <input type="text" id="desc" placeholder="Описание">
+    <input type="number" id="price" placeholder="Цена">
+    <input type="text" id="phone" placeholder="Телефон">
+    <select id="days"><option value="7">7 дней</option><option value="30">30 дней</option></select>
+    <button type="submit">Отправить</button>
+  </form>
+  <script>
+    document.getElementById('realtyForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = {
+        region: region.value,
+        city: city.value,
+        type: type.value,
+        rooms: rooms.value,
+        desc: desc.value,
+        price: price.value,
+        phone: phone.value,
+        days: days.value
+      };
+      Telegram.WebApp.sendData(JSON.stringify(data));
+    });
+  </script>
+</body>
+</html>
